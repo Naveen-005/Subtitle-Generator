@@ -18,16 +18,21 @@ def generate_subtitles(input_audio,output_path,Model="small"):
 
     for line in result["segments"]:
 
+        print(line)
         srt=""
         seq+=1
 
         time=convert_time_stamp(line['start'])
         srt+=(str(seq)+'\n'+time+' --> ')
 
+        if(line['text'].len()>80):
+            pass
+
+
         time=convert_time_stamp(line['end'])
         srt+=(time+'\n')
         srt+=(line['text']+'\n\n')
-        
+
         fp.write(srt)
         
     fp.close()
